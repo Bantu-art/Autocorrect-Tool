@@ -3,6 +3,7 @@ package Auto
 import (
 	"strings"
 	"fmt"
+	"strconv"
 )
 
 func Modify(text string) string {
@@ -22,6 +23,16 @@ func Modify(text string) string {
 		case "(cap)":
 			words[i-1] = strings.Title(words[i-1])
 			words = append(words[:i], words[i+1:]...)
+		case "(up,":
+			num, err := strconv.Atoi(strings.TrimSuffix(words[i+1], ")"))
+			if err != nil {
+				fmt.Println(err)
+				break
+			}
+			for j := 0; j <= num; j++ {
+				words[i-j] = strings.ToUpper(words[i-j])
+			}
+			words = append(words[:i], words[i+2:]...)
 		}
 	}
 	return strings.Join(words, " ")
