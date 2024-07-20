@@ -2,9 +2,8 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
 	"os"
-
+	"io"
 	"Autocorrect/Auto"
 )
 
@@ -26,7 +25,7 @@ func main() {
 	defer file.Close()
 
 	// Read the content of the input file
-	fileContent, err := ioutil.ReadAll(file)
+	fileContent, err := io.ReadAll(file)
 	if err != nil {
 		fmt.Println("Error reading file:", err)
 		return
@@ -38,7 +37,7 @@ func main() {
 	// Write to the output file
 	output := arg[2]
 
-	err = ioutil.WriteFile(output, []byte(modified), 0o644)
+	err = os.WriteFile(output, []byte(modified), 0o644)
 	if err != nil {
 		fmt.Println("Error writing to file:", err)
 		return
