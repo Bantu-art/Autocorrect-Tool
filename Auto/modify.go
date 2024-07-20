@@ -54,6 +54,8 @@ func Modify(text string) string {
 			}
 			words = append(words[:i], words[i+2:]...)
 		}
+		text = strings.Join(words, " ")
+		text = ReplaceBin(text)
 	}
-	return strings.Join(words, " ")
+	return text
 }
