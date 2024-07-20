@@ -56,6 +56,7 @@ func Modify(text string) string {
 		}
 		text = strings.Join(words, " ")
 		text = ReplaceBin(text)
+		text = ReplaceHex(text)
 	}
 	return text
 }
